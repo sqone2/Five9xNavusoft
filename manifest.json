@@ -1,0 +1,39 @@
+{
+  "manifest_version": 3,
+  "name": "Five9xNavusoft",
+  "version": "0.1.27",
+  "description": "Opens Five9 Agent Desktop in a bottom-left panel on Navusoft pages.",
+  "content_scripts": [
+    {
+      "matches": [
+        "https://bigssanitation.navusoft.net/*"
+      ],
+      "js": [
+        "navusoftApi.js",
+        "accountLogging.js"
+      ],
+      "world": "MAIN",
+      "run_at": "document_start"
+    },
+    {
+      "matches": [
+        "https://bigssanitation.navusoft.net/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_start"
+    },
+    {
+      "matches": [
+        "https://app.five9.com/clients/integrations/adt.main.html*"
+      ],
+      "js": [
+        "five9.crm.sdk.js",
+        "five9Bridge.js"
+      ],
+      "all_frames": true,
+      "run_at": "document_start"
+    }
+  ]
+}
