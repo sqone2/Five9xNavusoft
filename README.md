@@ -2,6 +2,8 @@
 
 Release ZIPs belong in `dist/`, which is excluded from Git along with `.DS_Store` files at any depth. Images remain in `assets/`.
 
+See the [privacy policy](PRIVACY.md) for the extension's data handling disclosures.
+
 This experimental Chrome extension opens a Five9 Agent Desktop iframe from a circular F9 launcher in the bottom-left corner of Navusoft pages at https://bigssanitation.navusoft.net/. The panel is a 500px square that shrinks to fit smaller screens. It starts minimized on every page load, regardless of its previous state. The Five9 iframe still initializes while minimized. When Five9 reports a newly handled call through `callStarted`, the dock opens immediately, independently of contact lookup. Five9 also replays this event after a refresh while handling an existing call, which reopens the dock for that call.
 
 When Five9 starts handling an inbound call, the extension searches Navusoft **Contacts** using the caller's ANI (or contact number if ANI is unavailable). Manual agent calls (`callType: AGENT`) use the same lookup with the dialed `number`, unless Five9 supplies `click2DialData.clickToDialNumber`, identifying a click-to-dial call. Click-to-dial calls and other outbound call types do not trigger a lookup. US numbers with a leading country code are normalized to 10 digits. A single contact match with a site opens that record in Navusoft using its native `Portal.util.Common.displayCustomerScreen` navigation. Multiple matches open Navusoft's native Contacts search and submit the phone number through its search controller, leaving the results grid available for selection. No contact results strip is added to the Five9 dock. Duplicate events within the page are ignored.
